@@ -8,13 +8,13 @@ namespace FairyWorld
 {
     internal class Cat : Mammal, IPlayfulPet
     {
-        internal static string SPECIES = "Cat";
-        internal static double LIFE_EXPECTANCY = 5500;
-        internal static double BODY_TEMPERATURE = 37;
+        internal const string SPECIES = "Cat";
+        internal const double LIFE_EXPECTANCY = 5500;
+        internal const double BODY_TEMPERATURE = 37;
 
-        private static double PLAYFUL_HOURLY_COSTS = 50;
-        private static string[] LIKED_ACTIVITIES = {"eat","nap","groom","drink","crawl","explore","pet"};
-        private static string[] DISLIKED_ACTIVITIES = {"bath"};
+        private const double PLAYFUL_HOURLY_COSTS = 50;
+        private static readonly string[] LIKED_ACTIVITIES = {"eat","nap","groom","drink","crawl","explore","pet"};
+        private static readonly string[] DISLIKED_ACTIVITIES = {"bath"};
 
         internal Cat(double heightM, double weightKg, string biologicalSex)
             : base(Cat.SPECIES, heightM, weightKg, Cat.LIFE_EXPECTANCY, biologicalSex, Cat.BODY_TEMPERATURE)

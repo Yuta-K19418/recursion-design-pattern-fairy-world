@@ -8,8 +8,8 @@ namespace FairyWorld
 {
     internal abstract class PlayfulPetAssistant
     {
-        protected static double DEFAULT_RENT_TIME = 1.0;
-        protected static string DEFAULT_TOUR = "all-rounder pack";
+        protected const double DEFAULT_RENT_TIME = 1.0;
+        protected const string DEFAULT_TOUR = "all-rounder pack";
 
         protected Person? CurrentPerson;
         protected double CurrentRentTime = PlayfulPetAssistant.DEFAULT_RENT_TIME;
