@@ -64,7 +64,7 @@ namespace FairyWorld
             return this.RunAssistanceTour(person, DEFAULT_TOUR);
         }
 
-        public double RunAssistanceTour(Person person, String tour)
+        public double RunAssistanceTour(Person person, string tour)
         {
             if (!this.IsValidTour(tour))
             {
@@ -96,6 +96,43 @@ namespace FairyWorld
             return rentalCosts;
         }
 
+        public double RunAssistanceTour(Person person, string tour, int amount)
+        {
+            if (!this.IsValidTour(tour))
+            {
+                Console.WriteLine("The tour guide does not accept the " + tour + " tour.");
+            }
+
+            var playfulPets = this.CreatePlayfulPet(amount);
+            double rentalCosts = 0d;
+
+            foreach (var playfulPet in playfulPets)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Booting up... Playful Pet Assistance robot at your service.");
+                Console.WriteLine("Printing information about the Person to service..." + person);
+                Console.WriteLine("");
+                Console.WriteLine("Printing information about the Playful Pet - " + playfulPet.GetPetName() + " to service..." + playfulPet);
+
+                if (tour == "all-rounder pack" || tour == "deluxe rounder pack")
+                {
+                    int count = tour == "all-rounder pack" ? 1 : 3;
+                    this.GenericRounderTour(count, person, playfulPet);
+                }
+                else
+                {
+                    Console.WriteLine("The tour assistant robot for " + playfulPet.GetPetName() + " and " + person.GetName() + " did nothing.");
+                }
+
+                rentalCosts += playfulPet.GetRentalCosts() * this.GetCurrentRentTime();
+            }
+
+
+            this.Reset();
+
+            return rentalCosts;
+        }
+
         private void GenericRounderTour(int activityCount, Person person, IPlayfulPet pet)
         {
             Console.WriteLine();
@@ -121,5 +158,7 @@ namespace FairyWorld
         }
 
         protected abstract IPlayfulPet CreatePlayfulPet();
+
+        protected abstract IPlayfulPet[] CreatePlayfulPet(int amount);
     }
 }
