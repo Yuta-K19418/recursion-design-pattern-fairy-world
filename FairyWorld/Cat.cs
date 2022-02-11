@@ -16,7 +16,7 @@ namespace FairyWorld
         private static string[] LIKED_ACTIVITIES = {"eat","nap","groom","drink","crawl","explore","pet"};
         private static string[] DISLIKED_ACTIVITIES = {"bath"};
 
-        public Cat(double heightM, double weightKg, String biologicalSex)
+        internal Cat(double heightM, double weightKg, string biologicalSex)
             : base(Cat.SPECIES, heightM, weightKg, Cat.LIFE_EXPECTANCY, biologicalSex, Cat.BODY_TEMPERATURE)
         {
         }
