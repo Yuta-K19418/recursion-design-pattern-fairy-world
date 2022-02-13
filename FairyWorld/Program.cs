@@ -21,6 +21,18 @@ namespace FairyWorld
             Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxx");
             Console.WriteLine();
         }
+
+        private Dictionary<string, RideExperience> rideExperienceDic  = new Dictionary<string, RideExperience>();
+
+        internal void AddRideExperience(string attractionKey, RideExperience experience)
+        {
+            rideExperienceDic.Add(attractionKey, experience);
+        }
+
+        internal void RideAttraction(string attractionKey, Person person, StateOfAffairs state)
+        {
+            rideExperienceDic[attractionKey].Ride(person, state);
+        }
     }
 
 
@@ -35,6 +47,12 @@ namespace FairyWorld
 
             var jessica = new Person("Jessica", "Roller", 30, 1.65, 95, "female");
             fw.RentPet("cat", jessica, 2, "deluxe rounder pack");
+
+            fw.AddRideExperience("Family Coasters", new RideFamilyCoastersExperience());
+            fw.AddRideExperience("Inverted Coasters", new RideInvertedCoastersExperience());
+            var state = new StateOfAffairs(10, 20, 70, "Feeling fun!");
+            fw.RideAttraction("Family Coasters", jessica, state);
+
         }
     }
 }
