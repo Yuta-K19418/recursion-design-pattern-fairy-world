@@ -1,4 +1,5 @@
 ﻿using System;
+using FairyWorld.Animals;
 
 namespace FairyWorld
 {
@@ -33,6 +34,36 @@ namespace FairyWorld
         {
             rideExperienceDic[attractionKey].Ride(person, state);
         }
+
+        internal void PlayLaserTag(Person person, ILaserTagMonsterFactory factory)
+        {
+            Console.WriteLine(person.GetName() + " will now play laser tag!");
+            Console.WriteLine();
+
+            var lowMon = factory.CreateLowTierMonster();
+            Console.WriteLine("Fighting " + lowMon + "....Defeated.");
+            Console.WriteLine();
+            var midMon = factory.CreateMidTierMonster();
+            Console.WriteLine("Fighting " + midMon + "....Defeated.");
+            Console.WriteLine();
+            var highMon = factory.CreateHighTierMonster();
+            Console.WriteLine("Fighting " + highMon + "....Defeated.");
+            Console.WriteLine();
+            var flyMon = factory.CreateFlyingMonster();
+            Console.WriteLine("Fighting " + flyMon + "....Defeated.");
+            Console.WriteLine();
+            var hybridMon = factory.CreateHybridMonster();
+            Console.WriteLine("Fighting " + hybridMon + "....Defeated.");
+            Console.WriteLine();
+            var finalMon = factory.CreateFinalBossMonster();
+            Console.WriteLine("Fighting " + finalMon + "....Defeated.");
+            Console.WriteLine();
+
+            Console.WriteLine("Congratulations! All monsters were defeated!");
+            Console.WriteLine();
+            Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxx");
+            Console.WriteLine();
+        }
     }
 
 
@@ -53,6 +84,9 @@ namespace FairyWorld
             var state = new StateOfAffairs(10, 20, 70, "Feeling fun!");
             fw.RideAttraction("Family Coasters", jessica, state);
 
+            fw.PlayLaserTag(jessica, new GenericLaserTagMonsterFactory());
+            fw.PlayLaserTag(jessica, new AntarcticaLaserTagMonsterFactory());
+            fw.PlayLaserTag(jessica, new MechaLaserTagMonsterFactory());
         }
     }
 }

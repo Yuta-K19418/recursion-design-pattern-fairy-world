@@ -8,6 +8,12 @@ namespace FairyWorld
 {
     internal class RandomWrapper
     {
+        public static int GetRanInt(int min, int max)
+        {
+            var r = new Random();
+            return min + (r.Next() * ((max - min) + 1));
+        }
+
         internal static double GetRanDouble(double min, double max)
         {
             var r = new Random();
