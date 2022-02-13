@@ -1,5 +1,7 @@
 ﻿using System;
-using FairyWorld.Animals;
+using FairyWorld.Attractions;
+using FairyWorld.RentalPets;
+using FairyWorld.Mosters.Factories;
 
 namespace FairyWorld
 {

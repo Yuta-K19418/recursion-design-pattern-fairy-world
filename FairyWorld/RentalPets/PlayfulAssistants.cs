@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FairyWorld.RentalPets.Animals;
 
-namespace FairyWorld
+namespace FairyWorld.RentalPets
 {
     internal class PlayfulCatAssistant : PlayfulPetAssistant
     {

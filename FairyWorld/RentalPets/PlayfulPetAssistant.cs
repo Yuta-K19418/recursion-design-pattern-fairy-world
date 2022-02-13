@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FairyWorld
+namespace FairyWorld.RentalPets
 {
     internal abstract class PlayfulPetAssistant
     {
