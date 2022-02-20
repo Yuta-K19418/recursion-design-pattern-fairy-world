@@ -18,7 +18,7 @@ namespace FairyWorld.Mosters
         {
         }
 
-        public string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Antarctica Ice Low Tier Monster";
         }
@@ -37,7 +37,7 @@ namespace FairyWorld.Mosters
         {
         }
 
-        public string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Antarctica Ice Mid Tier Monster";
         }
@@ -55,7 +55,7 @@ namespace FairyWorld.Mosters
         {
         }
 
-        public string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Antarctica Ice High Tier Monster";
         }
@@ -73,7 +73,7 @@ namespace FairyWorld.Mosters
         {
         }
 
-        public string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Antarctica Ice Flying Monster";
         }
@@ -91,7 +91,7 @@ namespace FairyWorld.Mosters
         {
         }
 
-        public string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Antarctica Ice Hybrid Monster";
         }
@@ -110,7 +110,7 @@ namespace FairyWorld.Mosters
         {
         }
 
-        public string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Antarctica Ice Final Boss Monster";
         }

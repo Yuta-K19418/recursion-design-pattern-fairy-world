@@ -94,7 +94,7 @@ namespace FairyWorld.Mosters
             return this.SpecialSkills;
         }
 
-        public string GetMonsterName()
+        public virtual string GetMonsterName()
         {
             return "Generic Monster";
         }
@@ -131,7 +131,7 @@ namespace FairyWorld.Mosters
             return this.SpecialSkills[0];
         }
 
-        internal string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Generic Low Tier Monster";
         }
@@ -161,7 +161,7 @@ namespace FairyWorld.Mosters
             this.SetSpecialSkills(s);
         }
 
-        public string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Generic Mid Tier Monster";
         }
@@ -196,7 +196,7 @@ namespace FairyWorld.Mosters
             this.SetSpecialSkills(s);
         }
 
-        public string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Generic High Tier Monster";
         }
@@ -273,7 +273,7 @@ namespace FairyWorld.Mosters
             return dist;
         }
 
-        public string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Generic Flying Monster";
         }
@@ -307,7 +307,7 @@ namespace FairyWorld.Mosters
             return this.DescendSpeed;
         }
 
-        public string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Generic Hybrid Monster";
         }
@@ -346,7 +346,7 @@ namespace FairyWorld.Mosters
             return "BOSS MONSTER REVERT! STAGE - " + this.CurrentStage;
         }
 
-        public string GetMonsterName()
+        public override string GetMonsterName()
         {
             return "Generic Final Boss Monster";
         }
