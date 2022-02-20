@@ -2,6 +2,7 @@
 using FairyWorld.Attractions;
 using FairyWorld.RentalPets;
 using FairyWorld.Mosters.Factories;
+using FairyWorld.ToyKits;
 
 namespace FairyWorld
 {
@@ -43,28 +44,52 @@ namespace FairyWorld
             Console.WriteLine();
 
             var lowMon = factory.CreateLowTierMonster();
-            Console.WriteLine("Fighting " + lowMon + "....Defeated.");
+            Console.WriteLine("Fighting " + lowMon.GetMonsterName() + "....Defeated.");
             Console.WriteLine();
             var midMon = factory.CreateMidTierMonster();
-            Console.WriteLine("Fighting " + midMon + "....Defeated.");
+            Console.WriteLine("Fighting " + midMon.GetMonsterName() + "....Defeated.");
             Console.WriteLine();
             var highMon = factory.CreateHighTierMonster();
-            Console.WriteLine("Fighting " + highMon + "....Defeated.");
+            Console.WriteLine("Fighting " + highMon.GetMonsterName() + "....Defeated.");
             Console.WriteLine();
             var flyMon = factory.CreateFlyingMonster();
-            Console.WriteLine("Fighting " + flyMon + "....Defeated.");
+            Console.WriteLine("Fighting " + flyMon.GetMonsterName() + "....Defeated.");
             Console.WriteLine();
             var hybridMon = factory.CreateHybridMonster();
-            Console.WriteLine("Fighting " + hybridMon + "....Defeated.");
+            Console.WriteLine("Fighting " + hybridMon.GetMonsterName() + "....Defeated.");
             Console.WriteLine();
             var finalMon = factory.CreateFinalBossMonster();
-            Console.WriteLine("Fighting " + finalMon + "....Defeated.");
+            Console.WriteLine("Fighting " + finalMon.GetMonsterName() + "....Defeated.");
             Console.WriteLine();
 
             Console.WriteLine("Congratulations! All monsters were defeated!");
             Console.WriteLine();
             Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxx");
             Console.WriteLine();
+        }
+
+        internal void CreateAHumanoidToyByKit(Person person, IHumanoidToyKitFactory factory)
+        {
+            var robot = factory.CreateRobot();
+            robot.MakeNoise();
+            robot.Walk();
+            robot.DisplayAssemblyLevel();
+            var vampire = factory.CreateVampire();
+            vampire.MakeNoise();
+            vampire.Walk();
+            vampire.DisplayAssemblyLevel();
+            var werewolf = factory.CreateWerewolf();
+            werewolf .MakeNoise();
+            werewolf .Walk();
+            werewolf.DisplayAssemblyLevel();
+            var transformer = factory.CreateTransformer();
+            transformer.MakeNoise();
+            transformer.Walk();
+            transformer.DisplayAssemblyLevel();
+            var alien = factory.CreateAlien();
+            alien.MakeNoise();
+            alien.Walk();
+            alien.DisplayAssemblyLevel();
         }
     }
 
@@ -89,6 +114,8 @@ namespace FairyWorld
             fw.PlayLaserTag(jessica, new GenericLaserTagMonsterFactory());
             fw.PlayLaserTag(jessica, new AntarcticaLaserTagMonsterFactory());
             fw.PlayLaserTag(jessica, new MechaLaserTagMonsterFactory());
+
+            fw.CreateAHumanoidToyByKit(jessica, new HumanoidToyKitFactory());
         }
     }
 }
