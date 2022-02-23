@@ -1,6 +1,7 @@
 ﻿using System;
 using FairyWorld.Attractions;
 using FairyWorld.RentalPets;
+using FairyWorld.Mosters;
 using FairyWorld.Mosters.Factories;
 using FairyWorld.ToyKits;
 using FairyWorld.Themes;
@@ -50,23 +51,17 @@ namespace FairyWorld
             Console.WriteLine();
 
             var lowMon = factory.CreateLowTierMonster();
-            Console.WriteLine("Fighting " + lowMon.GetMonsterName() + "....Defeated.");
-            Console.WriteLine();
+            fightMonsters(lowMon);
             var midMon = factory.CreateMidTierMonster();
-            Console.WriteLine("Fighting " + midMon.GetMonsterName() + "....Defeated.");
-            Console.WriteLine();
+            fightMonsters(midMon);
             var highMon = factory.CreateHighTierMonster();
-            Console.WriteLine("Fighting " + highMon.GetMonsterName() + "....Defeated.");
-            Console.WriteLine();
+            fightMonsters(highMon);
             var flyMon = factory.CreateFlyingMonster();
-            Console.WriteLine("Fighting " + flyMon.GetMonsterName() + "....Defeated.");
-            Console.WriteLine();
+            fightMonsters(flyMon);
             var hybridMon = factory.CreateHybridMonster();
-            Console.WriteLine("Fighting " + hybridMon.GetMonsterName() + "....Defeated.");
-            Console.WriteLine();
+            fightMonsters(hybridMon);
             var finalMon = factory.CreateFinalBossMonster();
-            Console.WriteLine("Fighting " + finalMon.GetMonsterName() + "....Defeated.");
-            Console.WriteLine();
+            fightMonsters(finalMon);
 
             Console.WriteLine("Congratulations! All monsters were defeated!");
             Console.WriteLine();
@@ -74,28 +69,31 @@ namespace FairyWorld
             Console.WriteLine();
         }
 
+        private void fightMonsters(IMonster monster)
+        {
+            Console.WriteLine("Fighting " + monster.GetMonsterName() + "....Defeated.");
+            Console.WriteLine();
+        }
+
         internal void CreateAHumanoidToyByKit(Person person, IHumanoidToyKitFactory factory)
         {
             var robot = factory.CreateRobot();
-            robot.MakeNoise();
-            robot.Walk();
-            robot.DisplayAssemblyLevel();
+            act(robot);
             var vampire = factory.CreateVampire();
-            vampire.MakeNoise();
-            vampire.Walk();
-            vampire.DisplayAssemblyLevel();
+            act(vampire);
             var werewolf = factory.CreateWerewolf();
-            werewolf.MakeNoise();
-            werewolf.Walk();
-            werewolf.DisplayAssemblyLevel();
+            act(werewolf);
             var transformer = factory.CreateTransformer();
-            transformer.MakeNoise();
-            transformer.Walk();
-            transformer.DisplayAssemblyLevel();
+            act(transformer);
             var alien = factory.CreateAlien();
-            alien.MakeNoise();
-            alien.Walk();
-            alien.DisplayAssemblyLevel();
+            act(alien);
+        }
+
+        private void act(IHumanoidToyKit toyKit)
+        {
+            toyKit.MakeNoise();
+            toyKit.Walk();
+            toyKit.DisplayAssemblyLevel();
             Console.WriteLine();
         }
 
@@ -187,17 +185,10 @@ namespace FairyWorld
         static void Main(string[] args)
         {
             var fw = new FairyWorld();
-            fw.AddPlayfulPetAssistant("cat", new PlayfulCatAssistant());
-            fw.AddPlayfulPetAssistant("dog", new PlayfulDogAssistant());
-            fw.AddPlayfulPetAssistant("rabbit", new PlayfulRabbitAssistant());
-
             var jessica = new Person("Jessica", "Roller", 30, 1.65, 95, "female");
-            fw.RentPet("cat", jessica, 2, "deluxe rounder pack");
-
-            fw.AddRideExperience("Family Coasters", new RideFamilyCoastersExperience());
-            fw.AddRideExperience("Inverted Coasters", new RideInvertedCoastersExperience());
+            rentPlayfulPetAssistant(ref fw, jessica);
             var state = new StateOfAffairs(10, 20, 70, "Feeling fun!");
-            fw.RideAttraction("Family Coasters", jessica, state);
+            experienceAttraction(ref fw, jessica, state);
 
             fw.PlayLaserTag(jessica, new GenericLaserTagMonsterFactory());
             fw.PlayLaserTag(jessica, new AntarcticaLaserTagMonsterFactory());
@@ -207,6 +198,33 @@ namespace FairyWorld
 
             fw.DemoTheme(new FairyWorldThemeFactory());
 
+            eatFastFood(ref fw);
+
+            var fwd = new VacationInvoiceBuilder();
+            Console.WriteLine(VacationDirector.FamilyWeekDeluxe(fwd, DateTime.Now).Build().GetString());
+            Console.WriteLine();
+
+            displayStamps(ref fw);
+        }
+
+        private static void rentPlayfulPetAssistant(ref FairyWorld fw, Person person)
+        {
+            fw.AddPlayfulPetAssistant("cat", new PlayfulCatAssistant());
+            fw.AddPlayfulPetAssistant("dog", new PlayfulDogAssistant());
+            fw.AddPlayfulPetAssistant("rabbit", new PlayfulRabbitAssistant());
+            fw.RentPet("cat", person, 2, "deluxe rounder pack");
+
+        }
+
+        private static void experienceAttraction(ref FairyWorld fw, Person person, StateOfAffairs state)
+        {
+            fw.AddRideExperience("Family Coasters", new RideFamilyCoastersExperience());
+            fw.AddRideExperience("Inverted Coasters", new RideInvertedCoastersExperience());
+            fw.RideAttraction("Family Coasters", person, state);
+        }
+
+        private static void eatFastFood(ref FairyWorld fw)
+        {
             var chickenAndBacon = fw.OrderSandwich(SandwichMenu.CHICKEN_AND_BACON, SandwichSize.FOOTLONG);
             Console.WriteLine(chickenAndBacon.GetString());
             Console.WriteLine(fw.OrderSandwich(SandwichMenu.STEAK_AND_CHEESE, SandwichSize.FOOTLONG).GetString());
@@ -218,11 +236,10 @@ namespace FairyWorld
                             .Build();
             Console.WriteLine(hamburger.GetString());
             Console.WriteLine();
+        }
 
-            var fwd = new VacationInvoiceBuilder();
-            Console.WriteLine(VacationDirector.FamilyWeekDeluxe(fwd, DateTime.Now).Build().GetString());
-            Console.WriteLine();
-
+        private static void displayStamps(ref FairyWorld fw)
+        {
             Console.OutputEncoding = Encoding.UTF8;
             StampPrototypeFactory.UpdatePrototype(4, new StarStamp("#f1c40f"));
             StampPrototypeFactory.UpdatePrototype(5, new TreeStamp("#2980b9"));
