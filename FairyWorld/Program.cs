@@ -3,6 +3,12 @@ using FairyWorld.Attractions;
 using FairyWorld.RentalPets;
 using FairyWorld.Mosters.Factories;
 using FairyWorld.ToyKits;
+using FairyWorld.Themes;
+using FairyWorld.Sandwiches;
+using static FairyWorld.Sandwiches.FairyWorldSandwichDirector;
+using FairyWorld.Vacations;
+using FairyWorld.Stamps;
+using System.Text;
 
 namespace FairyWorld
 {
@@ -79,8 +85,8 @@ namespace FairyWorld
             vampire.Walk();
             vampire.DisplayAssemblyLevel();
             var werewolf = factory.CreateWerewolf();
-            werewolf .MakeNoise();
-            werewolf .Walk();
+            werewolf.MakeNoise();
+            werewolf.Walk();
             werewolf.DisplayAssemblyLevel();
             var transformer = factory.CreateTransformer();
             transformer.MakeNoise();
@@ -90,6 +96,42 @@ namespace FairyWorld
             alien.MakeNoise();
             alien.Walk();
             alien.DisplayAssemblyLevel();
+            Console.WriteLine();
+        }
+
+        internal void DemoTheme(IFairyWorldThemeFactory factory)
+        {
+            var spring = factory.CreateSpring();
+            displayThemeContent(spring);
+            var summer = factory.CreateSummer();
+            displayThemeContent(summer);
+            var autumn = factory.CreateAutumn();
+            displayThemeContent(autumn);
+            var winter = factory.CreateWinter();
+            displayThemeContent(winter);
+            var halloween = factory.CreateHalloween();
+            displayThemeContent(halloween);
+            var valentine = factory.CreateValentine();
+            displayThemeContent(valentine);
+        }
+
+        private void displayThemeContent(ITheme theme)
+        {
+            Console.WriteLine($"Poster: {theme.GetPoster()}");
+            Console.WriteLine($"StringOfLights: {theme.GetStringOfLights()}");
+            Console.WriteLine($"LightShow: {theme.LightShow()}");
+            Console.WriteLine($"SongTitle: {theme.GetMusicSong().SongTitle}");
+            Console.WriteLine($"Lyrics: {theme.GetMusicSong().Lyrics}");
+            Console.WriteLine($"SongLength: {theme.GetMusicSong().SongLength.ToString("g")}");
+            Console.WriteLine();
+
+            foreach (var mascot in theme.GetMascots())
+            {
+                Console.WriteLine($"Mascot Name: {mascot.Name}");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
         }
     }
 
@@ -116,6 +158,8 @@ namespace FairyWorld
             fw.PlayLaserTag(jessica, new MechaLaserTagMonsterFactory());
 
             fw.CreateAHumanoidToyByKit(jessica, new HumanoidToyKitFactory());
+
+            fw.DemoTheme(new FairyWorldThemeFactory());
         }
     }
 }

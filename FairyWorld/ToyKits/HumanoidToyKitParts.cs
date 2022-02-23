@@ -57,12 +57,14 @@ namespace FairyWorld.ToyKits
 
         public int GetLevels()
         {
-            return RandomWrapper.GetRanInt(5);
+            var value = RandomWrapper.GetRanInt(5);
+            return value == 0 ? 1 : value;
         }
 
         public int GetCosts()
         {
-            return RandomWrapper.GetRanInt(10);
+            var value = RandomWrapper.GetRanInt(10);
+            return value == 0 ? 1 : value;
         }
     }
 
@@ -82,12 +84,14 @@ namespace FairyWorld.ToyKits
 
         public int GetLevels()
         {
-            return RandomWrapper.GetRanInt(5);
+            var value = RandomWrapper.GetRanInt(5);
+            return value == 0 ? 1 : value;
         }
 
         public int GetCosts()
         {
-            return RandomWrapper.GetRanInt(10);
+            var value = RandomWrapper.GetRanInt(10);
+            return value == 0 ? 1 : value;
         }
     }
 
@@ -115,12 +119,14 @@ namespace FairyWorld.ToyKits
 
         public int GetLevels()
         {
-            return RandomWrapper.GetRanInt(5);
+            var value = RandomWrapper.GetRanInt(5);
+            return value == 0 ? 1 : value;
         }
 
         public int GetCosts()
         {
-            return RandomWrapper.GetRanInt(10);
+            var value = RandomWrapper.GetRanInt(10);
+            return value == 0 ? 1 : value;
         }
     }
 
@@ -148,12 +154,14 @@ namespace FairyWorld.ToyKits
 
         public int GetLevels()
         {
-            return RandomWrapper.GetRanInt(5);
+            var value = RandomWrapper.GetRanInt(5);
+            return value == 0 ? 1 : value;
         }
 
         public int GetCosts()
         {
-            return RandomWrapper.GetRanInt(10);
+            var value = RandomWrapper.GetRanInt(10);
+            return value == 0 ? 1 : value;
         }
     }
 
@@ -181,12 +189,14 @@ namespace FairyWorld.ToyKits
 
         public int GetLevels()
         {
-            return RandomWrapper.GetRanInt(5);
+            var value = RandomWrapper.GetRanInt(5);
+            return value == 0 ? 1 : value;
         }
 
         public int GetCosts()
         {
-            return RandomWrapper.GetRanInt(10);
+            var value = RandomWrapper.GetRanInt(10);
+            return value == 0 ? 1 : value;
         }
     }
 
@@ -214,12 +224,14 @@ namespace FairyWorld.ToyKits
 
         public int GetLevels()
         {
-            return RandomWrapper.GetRanInt(5);
+            var value = RandomWrapper.GetRanInt(5);
+            return value == 0 ? 1 : value;
         }
 
         public int GetCosts()
         {
-            return RandomWrapper.GetRanInt(10);
+            var value = RandomWrapper.GetRanInt(10);
+            return value == 0 ? 1 : value;
         }
     }
 }

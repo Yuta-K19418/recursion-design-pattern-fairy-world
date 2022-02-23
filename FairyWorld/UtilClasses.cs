@@ -11,8 +11,7 @@ namespace FairyWorld
         public static int GetRanInt(int max)
         {
             var r = new Random();
-            var value = r.Next(max);
-            return value == 0 ? 1 : value;
+            return r.Next(max);
         }
 
         public static int GetRanInt(int min, int max)
