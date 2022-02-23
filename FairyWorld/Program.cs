@@ -133,6 +133,39 @@ namespace FairyWorld
             Console.WriteLine();
             Console.WriteLine();
         }
+
+        internal FastFood OrderSandwich(SandwichMenu item, SandwichSize itemSize)
+        {
+            var sandwichBuilder = new Builder("sandwich");
+
+            switch (item)
+            {
+                case SandwichMenu.CHICKEN_AND_BACON:
+                    FairyWorldSandwichDirector.ChickenAndBacon(sandwichBuilder);
+                    break;
+                case SandwichMenu.STEAK_AND_CHEESE:
+                    FairyWorldSandwichDirector.SteakAndCheese(sandwichBuilder);
+                    break;
+                case SandwichMenu.SPICY_ITALIAN:
+                    FairyWorldSandwichDirector.SpicyItalian(sandwichBuilder);
+                    break;
+                case SandwichMenu.TUNA_AND_EGG:
+                    FairyWorldSandwichDirector.TunaAndEgg(sandwichBuilder);
+                    break;
+            }
+
+            switch (itemSize)
+            {
+                case SandwichSize.FOOTLONG:
+                    sandwichBuilder.SetSize(15.24);
+                    break;
+                case SandwichSize.HALF_FOOTLONG:
+                    sandwichBuilder.SetSize(30.48);
+                    break;
+            }
+
+            return sandwichBuilder.Build();
+        }
     }
 
 
@@ -160,6 +193,22 @@ namespace FairyWorld
             fw.CreateAHumanoidToyByKit(jessica, new HumanoidToyKitFactory());
 
             fw.DemoTheme(new FairyWorldThemeFactory());
+
+            var chickenAndBacon = fw.OrderSandwich(SandwichMenu.CHICKEN_AND_BACON, SandwichSize.FOOTLONG);
+            Console.WriteLine(chickenAndBacon.GetString());
+            Console.WriteLine(fw.OrderSandwich(SandwichMenu.STEAK_AND_CHEESE, SandwichSize.FOOTLONG).GetString());
+            Console.WriteLine(fw.OrderSandwich(SandwichMenu.SPICY_ITALIAN, SandwichSize.HALF_FOOTLONG).GetString());
+            Console.WriteLine(fw.OrderSandwich(SandwichMenu.TUNA_AND_EGG, SandwichSize.FOOTLONG).GetString());
+            var hamburger = new Builder("hamburger")
+                            .AddTopping1("Beef")
+                            .AddCheese()
+                            .Build();
+            Console.WriteLine(hamburger.GetString());
+            Console.WriteLine();
+
+            var fwd = new VacationInvoiceBuilder();
+            Console.WriteLine(VacationDirector.FamilyWeekDeluxe(fwd, DateTime.Now).Build().GetString());
+            Console.WriteLine();
         }
     }
 }
