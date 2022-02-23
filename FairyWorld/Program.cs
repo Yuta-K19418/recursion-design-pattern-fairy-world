@@ -166,6 +166,19 @@ namespace FairyWorld
 
             return sandwichBuilder.Build();
         }
+
+        internal void PhotoBoothShoot(int[] stampSlots)
+        {
+            foreach (var stampSlotKey in stampSlots)
+            {
+                var stamp = StampPrototypeFactory.GetStamp(stampSlotKey);
+                if (stamp != null)
+                {
+                    Console.WriteLine("Stamp - " + stamp + " used in the photoshoot!");
+                    Console.WriteLine("-> " + stamp.GetString());
+                }
+            }
+        }
     }
 
 
@@ -208,6 +221,22 @@ namespace FairyWorld
 
             var fwd = new VacationInvoiceBuilder();
             Console.WriteLine(VacationDirector.FamilyWeekDeluxe(fwd, DateTime.Now).Build().GetString());
+            Console.WriteLine();
+
+            Console.OutputEncoding = Encoding.UTF8;
+            StampPrototypeFactory.UpdatePrototype(4, new StarStamp("#f1c40f"));
+            StampPrototypeFactory.UpdatePrototype(5, new TreeStamp("#2980b9"));
+            StampPrototypeFactory.UpdatePrototype(6, new RainbowStamp("#ecf0f1"));
+            StampPrototypeFactory.UpdatePrototype(7, new PeaceStamp("#95a5a6"));
+            fw.PhotoBoothShoot(new int[] { 3, 4, 2, 1, 1, 1, 2, 3, 4, 5, 5, 6, 6, 7, 7, 0, 1, 4 });
+            Console.WriteLine();
+            Console.WriteLine();
+            StampPrototypeFactory.UpdatePrototype(8, new GenericStamp(title: "Ring", render: "💍", color: "#95a5a6"));
+            StampPrototypeFactory.UpdatePrototype(9, new GenericStamp(title: "Apple", render: "🍎", color: "#2980b9"));
+            StampPrototypeFactory.UpdatePrototype(10, new GenericStamp(title: "Thunder", render: "⚡", color: "#ecf0f1"));
+            StampPrototypeFactory.UpdatePrototype(11, new GenericStamp(title: "MusicNote", render: "🎵", color: "#95a5a6"));
+            fw.PhotoBoothShoot(new int[] { 8, 9, 10, 11});
+            Console.WriteLine();
             Console.WriteLine();
         }
     }
